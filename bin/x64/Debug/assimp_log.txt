@@ -1,0 +1,46 @@
+Info,  T14792: this is my info-call
+Info,  T14792: App fired!
+Info,  T14792: Load ..\..\..\models\TexturedCube.obj
+Debug, T14792: Assimp 4.1.0 amd64 msvc debug shared singlethreaded
+Info,  T14792: Found a matching importer for this file format: Wavefront Object Importer.
+Info,  T14792: Import root directory is '..\..\..\models\'
+Info,  T14792: Entering post processing pipeline
+Debug, T14792: RemoveRedundantMatsProcess begin
+Info,  T14792: RemoveRedundantMatsProcess finished. Removed 0 redundant and 1 unused materials.
+Debug, T14792: FindDegeneratesProcess begin
+Debug, T14792: FindDegeneratesProcess finished
+Debug, T14792: GenUVCoordsProcess begin
+Debug, T14792: GenUVCoordsProcess finished
+Debug, T14792: TriangulateProcess begin
+Debug, T14792: TriangulateProcess finished. There was nothing to be done.
+Debug, T14792: SortByPTypeProcess begin
+Info,  T14792: Points: 0, Lines: 0, Triangles: 6, Polygons: 0 (Meshes, X = removed)
+Debug, T14792: SortByPTypeProcess finished
+Debug, T14792: FindInvalidDataProcess begin
+Debug, T14792: FindInvalidDataProcess finished. Everything seems to be OK.
+Debug, T14792: SplitLargeMeshesProcess_Triangle begin
+Debug, T14792: SplitLargeMeshesProcess_Triangle finished. There was nothing to do
+Debug, T14792: Generate spatially-sorted vertex cache
+Debug, T14792: GenVertexNormalsProcess begin
+Debug, T14792: GenVertexNormalsProcess finished. Normals are already there
+Debug, T14792: CalcTangentsProcess begin
+Info,  T14792: CalcTangentsProcess finished. Tangents have been calculated
+Debug, T14792: JoinVerticesProcess begin
+Debug, T14792: Mesh 0 (Cube) | Verts in: 6 out: 4 | ~33.3333%
+Debug, T14792: Mesh 1 (Left) | Verts in: 6 out: 4 | ~33.3333%
+Debug, T14792: Mesh 2 (Right) | Verts in: 6 out: 4 | ~33.3333%
+Debug, T14792: Mesh 3 (Top) | Verts in: 6 out: 4 | ~33.3333%
+Debug, T14792: Mesh 4 (Back) | Verts in: 6 out: 4 | ~33.3333%
+Debug, T14792: Mesh 5 (Bottom) | Verts in: 6 out: 6 | ~0%
+Info,  T14792: JoinVerticesProcess finished | Verts in: 36 out: 26 | ~27.8%
+Debug, T14792: SplitLargeMeshesProcess_Vertex begin
+Debug, T14792: SplitLargeMeshesProcess_Vertex finished. There was nothing to do
+Debug, T14792: LimitBoneWeightsProcess begin
+Debug, T14792: LimitBoneWeightsProcess end
+Debug, T14792: ImproveCacheLocalityProcess begin
+Info,  T14792: Cache relevant are 0 meshes (0 faces). Average output ACMR is -nan(ind)
+Debug, T14792: ImproveCacheLocalityProcess finished. 
+Info,  T14792: Leaving post processing pipeline
+Info,  T14792: Import of scene ..\..\..\models\TexturedCube.obj succeeded.
+Info,  T14792: drawing objects
+Skipping one or more lines with the same contents
