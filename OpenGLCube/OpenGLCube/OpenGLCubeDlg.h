@@ -1,5 +1,5 @@
 
-// OpenGLCubeDlg.h : Çì´õ ÆÄÀÏ
+// OpenGLCubeDlg.h : í—¤ë” íŒŒì¼
 //
 
 #pragma once
@@ -9,44 +9,44 @@
 
 
 
-// COpenGLCubeDlg ´ëÈ­ »óÀÚ
+// COpenGLCubeDlg ëŒ€í™” ìƒì
 class COpenGLCubeDlg : public CDialogEx
 {
-// »ı¼ºÀÔ´Ï´Ù.
+// ìƒì„±ì…ë‹ˆë‹¤.
 public:
-	COpenGLCubeDlg(CWnd* pParent = NULL);	// Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+    COpenGLCubeDlg(CWnd* pParent = NULL);	// í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 #ifdef AFX_DESIGN_TIME
-	enum { IDD = IDD_MFCOPENGL_DIALOG };
+    enum { IDD = IDD_MFCOPENGL_DIALOG };
 #endif
 
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV Áö¿øÀÔ´Ï´Ù.
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 
-// ±¸ÇöÀÔ´Ï´Ù.
+// êµ¬í˜„ì…ë‹ˆë‹¤.
 protected:
-	HICON m_hIcon;
+    HICON m_hIcon;
 
-	// »ı¼ºµÈ ¸Ş½ÃÁö ¸Ê ÇÔ¼ö
-	virtual BOOL OnInitDialog();
-	afx_msg void OnPaint();
-	afx_msg HCURSOR OnQueryDragIcon();
-
-public:
-	void GLResize(int cx, int cy);
+    // ìƒì„±ëœ ë©”ì‹œì§€ ë§µ í•¨ìˆ˜
+    virtual BOOL OnInitDialog();
+    afx_msg void OnPaint();
+    afx_msg HCURSOR OnQueryDragIcon();
 
 public:
-	afx_msg void OnDestroy();
+    void GLResize(int cx, int cy);
+
+public:
+    afx_msg void OnDestroy();
 
 
 protected:
-	CFrameWnd* m_pFrameWnd;
-	CStatic m_PictCtrl;
-	OpenGLRenderer *m_pLeft;
-	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
-	DECLARE_MESSAGE_MAP()
+    CFrameWnd* m_pFrameWnd;
+    CStatic m_PictCtrl;
+    OpenGLRenderer *m_pLeft;
+    afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
+    DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedButtonClose();
+    afx_msg void OnBnClickedButtonClose();
 };

@@ -1,5 +1,5 @@
 
-// OpenGLCubeDlg.cpp : ±¸Çö ÆÄÀÏ
+// OpenGLCubeDlg.cpp : êµ¬í˜„ íŒŒì¼
 //
 
 #include "stdafx.h"
@@ -10,125 +10,125 @@
 #define new DEBUG_NEW
 #endif
 
-// COpenGLCubeDlg ´ëÈ­ »óÀÚ
+// COpenGLCubeDlg ëŒ€í™” ìƒì
 
 
 
 COpenGLCubeDlg::COpenGLCubeDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(IDD_MFCOPENGL_DIALOG, pParent)
+    : CDialogEx(IDD_MFCOPENGL_DIALOG, pParent)
 {
-	m_pLeft = NULL;
-	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+    m_pLeft = NULL;
+    m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
 void COpenGLCubeDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialogEx::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_OPENGL, m_PictCtrl);
+    CDialogEx::DoDataExchange(pDX);
+    DDX_Control(pDX, IDC_OPENGL, m_PictCtrl);
 }
 
 BEGIN_MESSAGE_MAP(COpenGLCubeDlg, CDialogEx)
-	ON_WM_SYSCOMMAND()
-	ON_WM_PAINT()
-	ON_WM_QUERYDRAGICON()
-	ON_WM_SIZE()
-	ON_WM_DESTROY()
-	ON_BN_CLICKED(IDC_BUTTON_CLOSE, &COpenGLCubeDlg::OnBnClickedButtonClose)
+    ON_WM_SYSCOMMAND()
+    ON_WM_PAINT()
+    ON_WM_QUERYDRAGICON()
+    ON_WM_SIZE()
+    ON_WM_DESTROY()
+    ON_BN_CLICKED(IDC_BUTTON_CLOSE, &COpenGLCubeDlg::OnBnClickedButtonClose)
 END_MESSAGE_MAP()
 
 
-// COpenGLCubeDlg ¸Ş½ÃÁö Ã³¸®±â
+// COpenGLCubeDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 
 void COpenGLCubeDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
-	{
-		CDialogEx::OnSysCommand(nID, lParam);
-	}
+    {
+        CDialogEx::OnSysCommand(nID, lParam);
+    }
 }
 
 BOOL COpenGLCubeDlg::OnInitDialog()
 {
-	CDialogEx::OnInitDialog();
+    CDialogEx::OnInitDialog();
 
-	// ÀÌ ´ëÈ­ »óÀÚÀÇ ¾ÆÀÌÄÜÀ» ¼³Á¤ÇÕ´Ï´Ù.  ÀÀ¿ë ÇÁ·Î±×·¥ÀÇ ÁÖ Ã¢ÀÌ ´ëÈ­ »óÀÚ°¡ ¾Æ´Ò °æ¿ì¿¡´Â
-	//  ÇÁ·¹ÀÓ¿öÅ©°¡ ÀÌ ÀÛ¾÷À» ÀÚµ¿À¸·Î ¼öÇàÇÕ´Ï´Ù.
-	SetIcon(m_hIcon, TRUE);			// Å« ¾ÆÀÌÄÜÀ» ¼³Á¤ÇÕ´Ï´Ù.
-	SetIcon(m_hIcon, FALSE);		// ÀÛÀº ¾ÆÀÌÄÜÀ» ¼³Á¤ÇÕ´Ï´Ù.
+    // ì´ ëŒ€í™” ìƒìì˜ ì•„ì´ì½˜ì„ ì„¤ì •í•©ë‹ˆë‹¤.  ì‘ìš© í”„ë¡œê·¸ë¨ì˜ ì£¼ ì°½ì´ ëŒ€í™” ìƒìê°€ ì•„ë‹ ê²½ìš°ì—ëŠ”
+    //  í”„ë ˆì„ì›Œí¬ê°€ ì´ ì‘ì—…ì„ ìë™ìœ¼ë¡œ ìˆ˜í–‰í•©ë‹ˆë‹¤.
+    SetIcon(m_hIcon, TRUE);			// í° ì•„ì´ì½˜ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+    SetIcon(m_hIcon, FALSE);		// ì‘ì€ ì•„ì´ì½˜ì„ ì„¤ì •í•©ë‹ˆë‹¤.
 
-	// TODO: ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+    // TODO: ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
-	CRect rectLeft, rect;
-	int iPosOffSetX, iPosOffSetY, iWidth, iHeight;
+    CRect rectLeft, rect;
+    int iPosOffSetX, iPosOffSetY, iWidth, iHeight;
 
-	GetWindowRect(rect);
+    GetWindowRect(rect);
 
-	////------------------------
-	iPosOffSetX = 0;
-	iPosOffSetY = 0;
-	m_PictCtrl.GetWindowRect(rectLeft);
-	iWidth = rectLeft.Width();
-	iHeight = rectLeft.Height();
+    ////------------------------
+    iPosOffSetX = 0;
+    iPosOffSetY = 0;
+    m_PictCtrl.GetWindowRect(rectLeft);
+    iWidth = rectLeft.Width();
+    iHeight = rectLeft.Height();
 
-	m_pLeft = new OpenGLRenderer;
-	CString className = AfxRegisterWndClass(CS_HREDRAW | CS_VREDRAW | CS_OWNDC, NULL, (HBRUSH)GetStockObject(WHITE_BRUSH), NULL);
-	m_pLeft->CreateEx(0, className, _T("OpenGLCube"), WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN, rectLeft, this, 0);
-	m_pLeft->ShowWindow(SW_SHOW);
+    m_pLeft = new OpenGLRenderer;
+    CString className = AfxRegisterWndClass(CS_HREDRAW | CS_VREDRAW | CS_OWNDC, NULL, (HBRUSH)GetStockObject(WHITE_BRUSH), NULL);
+    m_pLeft->CreateEx(0, className, _T("OpenGLCube"), WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN, rectLeft, this, 0);
+    m_pLeft->ShowWindow(SW_SHOW);
 
-	m_pLeft->CreateGLContext(rectLeft, this);
-	m_pLeft->PrepareScene(0, 0, iWidth, iHeight); //will show without this but as black & white.
-	m_pLeft->initAi();
-	m_pLeft->m_unpTimer = m_pLeft->SetTimer(1, 10, 0);
+    m_pLeft->CreateGLContext(rectLeft, this);
+    m_pLeft->PrepareScene(0, 0, iWidth, iHeight); //will show without this but as black & white.
+    m_pLeft->initAi();
+    m_pLeft->m_unpTimer = m_pLeft->SetTimer(1, 10, 0);
 
-	return TRUE;  // Æ÷Ä¿½º¸¦ ÄÁÆ®·Ñ¿¡ ¼³Á¤ÇÏÁö ¾ÊÀ¸¸é TRUE¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+    return TRUE;  // í¬ì»¤ìŠ¤ë¥¼ ì»¨íŠ¸ë¡¤ì— ì„¤ì •í•˜ì§€ ì•Šìœ¼ë©´ TRUEë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 }
 
-// ´ëÈ­ »óÀÚ¿¡ ÃÖ¼ÒÈ­ ´ÜÃß¸¦ Ãß°¡ÇÒ °æ¿ì ¾ÆÀÌÄÜÀ» ±×¸®·Á¸é
-//  ¾Æ·¡ ÄÚµå°¡ ÇÊ¿äÇÕ´Ï´Ù.  ¹®¼­/ºä ¸ğµ¨À» »ç¿ëÇÏ´Â MFC ÀÀ¿ë ÇÁ·Î±×·¥ÀÇ °æ¿ì¿¡´Â
-//  ÇÁ·¹ÀÓ¿öÅ©¿¡¼­ ÀÌ ÀÛ¾÷À» ÀÚµ¿À¸·Î ¼öÇàÇÕ´Ï´Ù.
+// ëŒ€í™” ìƒìì— ìµœì†Œí™” ë‹¨ì¶”ë¥¼ ì¶”ê°€í•  ê²½ìš° ì•„ì´ì½˜ì„ ê·¸ë¦¬ë ¤ë©´
+//  ì•„ë˜ ì½”ë“œê°€ í•„ìš”í•©ë‹ˆë‹¤.  ë¬¸ì„œ/ë·° ëª¨ë¸ì„ ì‚¬ìš©í•˜ëŠ” MFC ì‘ìš© í”„ë¡œê·¸ë¨ì˜ ê²½ìš°ì—ëŠ”
+//  í”„ë ˆì„ì›Œí¬ì—ì„œ ì´ ì‘ì—…ì„ ìë™ìœ¼ë¡œ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 
 void COpenGLCubeDlg::OnPaint()
 {
-	if (IsIconic())
-	{
-		CPaintDC dc(this); // ±×¸®±â¸¦ À§ÇÑ µğ¹ÙÀÌ½º ÄÁÅØ½ºÆ®ÀÔ´Ï´Ù.
+    if (IsIconic())
+    {
+        CPaintDC dc(this); // ê·¸ë¦¬ê¸°ë¥¼ ìœ„í•œ ë””ë°”ì´ìŠ¤ ì»¨í…ìŠ¤íŠ¸ì…ë‹ˆë‹¤.
 
-		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
+        SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// Å¬¶óÀÌ¾ğÆ® »ç°¢Çü¿¡¼­ ¾ÆÀÌÄÜÀ» °¡¿îµ¥¿¡ ¸ÂÃä´Ï´Ù.
-		int cxIcon = GetSystemMetrics(SM_CXICON);
-		int cyIcon = GetSystemMetrics(SM_CYICON);
-		CRect rect;
-		GetClientRect(&rect);
-		int x = (rect.Width() - cxIcon + 1) / 2;
-		int y = (rect.Height() - cyIcon + 1) / 2;
+        // í´ë¼ì´ì–¸íŠ¸ ì‚¬ê°í˜•ì—ì„œ ì•„ì´ì½˜ì„ ê°€ìš´ë°ì— ë§ì¶¥ë‹ˆë‹¤.
+        int cxIcon = GetSystemMetrics(SM_CXICON);
+        int cyIcon = GetSystemMetrics(SM_CYICON);
+        CRect rect;
+        GetClientRect(&rect);
+        int x = (rect.Width() - cxIcon + 1) / 2;
+        int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// ¾ÆÀÌÄÜÀ» ±×¸³´Ï´Ù.
-		dc.DrawIcon(x, y, m_hIcon);
-	}
-	else
-	{
-		CDialogEx::OnPaint();
+        // ì•„ì´ì½˜ì„ ê·¸ë¦½ë‹ˆë‹¤.
+        dc.DrawIcon(x, y, m_hIcon);
+    }
+    else
+    {
+        CDialogEx::OnPaint();
 
-	}
+    }
 }
- 
-// »ç¿ëÀÚ°¡ ÃÖ¼ÒÈ­µÈ Ã¢À» ²ô´Â µ¿¾È¿¡ Ä¿¼­°¡ Ç¥½ÃµÇµµ·Ï ½Ã½ºÅÛ¿¡¼­
-//  ÀÌ ÇÔ¼ö¸¦ È£ÃâÇÕ´Ï´Ù.
+
+// ì‚¬ìš©ìê°€ ìµœì†Œí™”ëœ ì°½ì„ ë„ëŠ” ë™ì•ˆì— ì»¤ì„œê°€ í‘œì‹œë˜ë„ë¡ ì‹œìŠ¤í…œì—ì„œ
+//  ì´ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 HCURSOR COpenGLCubeDlg::OnQueryDragIcon()
 {
-	return static_cast<HCURSOR>(m_hIcon);
+    return static_cast<HCURSOR>(m_hIcon);
 }
 
 void COpenGLCubeDlg::OnDestroy()
 {
-	CDialogEx::OnDestroy();
+    CDialogEx::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+    // TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
 
 void COpenGLCubeDlg::OnBnClickedButtonClose()
 {
-	SendMessage(WM_CLOSE, 0, 0);
+    SendMessage(WM_CLOSE, 0, 0);
 }
