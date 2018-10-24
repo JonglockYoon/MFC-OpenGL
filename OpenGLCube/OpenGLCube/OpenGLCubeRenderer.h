@@ -21,7 +21,7 @@
 
 
 // assimp include files. These three are usually needed.
-#include "assimp/Importer.hpp"	//OO version Header!
+#include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"
 #include "assimp/scene.h"
 #include "assimp/DefaultLogger.hpp"
@@ -45,27 +45,13 @@ public:
 	void PrepareScene(int sx, int sy, int cx, int cy);				// Scene preparation
 	void DestroyScene();            // Cleanup
 	
-	//void SetViewPortSize(int ViewPortWidth, int ViewPortHeight) { m_iViewPortWidth = ViewPortWidth; m_iViewPortHeight = ViewPortHeight; };
-
-	//CRect &GetWinRect() { return m_WindowOrig; };
-	//int &GetViewPortWidth() { return m_iViewPortWidth; };
-	//int &GetViewPortHeight() { return m_iViewPortHeight; };
-
-	UINT_PTR m_unpTimer;
-
 protected:
 	bool InitContext(CWnd *parent);					 // Creates OpenGL Rendering Context
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 
 	HGLRC m_hrc;                        // OpenGL Rendering Context 
 	HDC m_hdc;
-
 	CRect m_rect;
-	//CRect m_WindowOld;
-	//CRect m_WindowOrig;
-
-	//int m_iWidth, m_iHeight;
-	//int	m_iViewPortWidth, m_iViewPortHeight;
 
 	DECLARE_MESSAGE_MAP()
 
@@ -83,8 +69,7 @@ public:
 	// images / texture
 	std::map<std::string, GLuint*> textureIdMap;	// map image filenames to textureIds
 	GLuint*		textureIds;							// pointer to texture Array
-
-													// Create an instance of the Importer class
+	// Create an instance of the Importer class
 	Assimp::Importer importer;
 
 

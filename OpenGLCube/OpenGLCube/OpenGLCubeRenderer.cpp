@@ -94,9 +94,10 @@ bool OpenGLRenderer::InitContext(CWnd *parent)
     BOOL bResult = SetPixelFormat (m_hdc, nPixelFormat, &pfd);
     if (!bResult) return false; 
  
-    HGLRC tempContext = wglCreateContext(m_hdc); 
-	wglMakeCurrent( m_hdc, tempContext);
- 	
+    m_hrc = wglCreateContext(m_hdc);
+	wglMakeCurrent( m_hdc, m_hrc);
+
+#if 0 // GLEW(OpenGL Extension Wrangler) 기능이 필요할때 사용합니다. 	
 	GLenum GlewInitResult;
 	glewExperimental = GL_TRUE;
 	GlewInitResult = glewInit();
@@ -113,12 +114,12 @@ bool OpenGLRenderer::InitContext(CWnd *parent)
             WGL_CONTEXT_FLAGS_ARB, 0,
             0
     };
- 
-	m_hrc = tempContext;
+
 	if (wglewIsSupported("WGL_ARB_create_context") == 1)
 	{
 	}
- 
+#endif
+
     if (!m_hrc)
 		return false;
 
@@ -157,11 +158,8 @@ void OpenGLRenderer::OnTimer(UINT_PTR nIDEvent)
 	switch (nIDEvent)
 	{
 		case 1:
-		{
 			DrawGLScene();
-
 			break;
-		}
 		default:
 			break;
 	}
@@ -542,10 +540,7 @@ void OpenGLRenderer::drawAiScene(const aiScene* scene)
 
 	double scale = 2;
 	recursive_render(scene, scene->mRootNode, scale);
-
 }
-
-
 
 bool OpenGLRenderer::initAi()
 {
@@ -557,9 +552,7 @@ bool OpenGLRenderer::initAi()
 	if (!Import3DFromFile())
 		return 0;
 	if (!LoadGLTextures(scene))
-	{
 		return FALSE;
-	}
 
 	glEnable(GL_TEXTURE_2D);
 	glShadeModel(GL_SMOOTH);		 // Enables Smooth Shading
@@ -593,7 +586,7 @@ int OpenGLRenderer::DrawGLScene()				//Here's where we do all the drawing
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear The Screen And The Depth Buffer
 	glLoadIdentity();				// Reset MV Matrix
 
-	glTranslatef(0.0f, 0.0f, -20.0f);	// Move 40 Units And Into The Screen
+	glTranslatef(0.0f, 0.0f, -20.0f);
 
 	glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
@@ -605,7 +598,6 @@ int OpenGLRenderer::DrawGLScene()				//Here's where we do all the drawing
 	yrot += 0.4f;
 	zrot += 0.7f;
 
-	//glFlush();
 	SwapBuffers(m_hdc);
 	wglMakeCurrent(m_hdc, NULL);
 
